@@ -36,8 +36,6 @@ namespace WebHello
             {
                 Log.Fatal("Host terminated: " + e); 
             }
-
-            
         }
 
 
@@ -47,16 +45,16 @@ namespace WebHello
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var logger = services.GetRequiredService<ILogger<Program>>();
+                // var logger = services.GetRequiredService<ILogger<Program>>();
                 try
                 {
                     var context = services.GetRequiredService<DataContext>();
                     context.Database.EnsureCreated();
-                    logger.LogInformation("Db is created succefully");
+                    Log.Information("Db is created succefully");
                 }
                 catch (Exception ex)
                 {          
-                    logger.LogError(ex, "An error occurred created the DB"); 
+                    Log.Fatal(ex, "An error occurred created the DB"); 
                 }
             }
         }

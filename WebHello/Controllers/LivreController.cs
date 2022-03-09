@@ -23,7 +23,8 @@ namespace WebHello.Controllers
         [HttpGet]
         public async Task<IList<Livre>> Get()
         {
-            _logger.LogInformation("[GET]: ");
+            _logger.LogInformation("[GET]: Tentative de consulter les livres");
+
             resLivres = await context.Livres.ToListAsync();
             return resLivres;
         }
@@ -33,6 +34,7 @@ namespace WebHello.Controllers
         public async Task<Livre> Get(int id)
         {
             _logger.LogInformation("[GET]: "+ id);
+            
             return await context.Livres.FirstOrDefaultAsync(m => m.ID == id); 
         }
 
